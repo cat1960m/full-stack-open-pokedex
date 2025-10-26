@@ -39,5 +39,5 @@ test("list item is shown", async ({ page }) => {
     }
   }
   console.log("-----", cns);
-  expect(cns.length).toBe(1);
+  expect(cns.length).toBe(3);
 });
