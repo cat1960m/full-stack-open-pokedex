@@ -12,10 +12,10 @@ const PokemonPage = ({ previous, next }) => {
   const { data: pokemon, error, isLoading } = useApi(`https://pokeapi.co/api/v2/pokemon/${name}`)
 
   if (isLoading) {
-    return <LoadingSpinner />
+    return <div data-testid="star"><LoadingSpinner /></div>
   }
   if (error) {
-    return <ErrorMessage error={error} />
+    return <div data-testid="er" ><ErrorMessage error={error} /> </div>
   }
 
   const { type } = pokemon.types.find((type) => type.slot === 1)
@@ -28,7 +28,7 @@ const PokemonPage = ({ previous, next }) => {
 
   console.log('hiddenAbility=', hiddenAbility)
   return (
-    <>
+    <div data-testid="body">
       <div className="links">
         {previous && <Link to={`/pokemon/${previous.name}`}>Previous</Link>}
         <Link to="/">Home</Link>
@@ -56,7 +56,7 @@ const PokemonPage = ({ previous, next }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
