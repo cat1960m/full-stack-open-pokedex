@@ -11,12 +11,14 @@ test("list container is shown", async ({ page }) => {
 
   // Expect a title "to contain" a substring.
   await expect(locator).toBeVisible();
+  console.log("list container is shown!!");
 });
 test("list item is shown", async ({ page }) => {
   await page.goto(URL);
 
   const list = await page.locator(".list-container");
   const all = await list.locator(".list-item-name").all();
+  console.log("all list-item-name count=", all.length);
 
   expect(all.length > 0).toBeTruthy();
 
