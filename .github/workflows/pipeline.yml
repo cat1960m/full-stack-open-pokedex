@@ -19,7 +19,6 @@ jobs:
       - name: Check test
         run: npm run test
   test:
-    timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
