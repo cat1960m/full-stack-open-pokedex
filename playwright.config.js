@@ -27,7 +27,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: "http://localhost:5050",
+    baseURL: "http://localhost:5000",
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
@@ -79,7 +79,7 @@ export default defineConfig({
   // },
   webServer: {
     command: "npm run start-prod",
-    url: "http://localhost:5050",
+    url: "http://localhost:5000",
     timeout: 240 * 1000,
     reuseExistingServer: !process.env.CI,
   },
