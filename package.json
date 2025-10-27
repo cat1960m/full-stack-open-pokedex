@@ -60,7 +60,8 @@
     "testEnvironment": "jsdom",
     "testPathIgnorePatterns": [
       "playwright",
-      "e2e"
+      "tests"
+
     ]
   }
 }
