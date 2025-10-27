@@ -18,14 +18,15 @@ test("list item is shown", async ({ page }) => {
   const list = await page.locator(".list-container");
   const all = await list.locator(".list-item-name").all();
 
-  expect(all.length > 1).toBeTruthy();
+  expect(all.length > 0).toBeTruthy();
 
-  await all[1].click();
+  await all[0].click();
 
   await page.waitForURL(REG);
   await expect(page).toHaveURL(REG);
   await page.waitForSelector(".links");
-  await expect(page.getByText("Next")).toBeVisible(); // confirms page is loaded
+  const home = page.getByText("Home");
+  await expect(home).toBeVisible(); // confirms page is loaded
   //await expect(page.getByText("GET")).toBeVisible(); // confirms page is loaded
   //await expect(page.getByTestId("body")).toBeVisible(); // confirms page is loaded
 
@@ -40,4 +41,12 @@ test("list item is shown", async ({ page }) => {
   }
   console.log("-----", cns);
   expect(cns.length).toBe(1);
+
+  await home.click();
+  await page.waitForURL(URL);
+  const main = await page.locator(".list-container");
+
+  // Expect a title "to contain" a substring.
+  await expect(main).toBeVisible();
+  console.log("main class=", await main.getAttribute("class"));
 });
