@@ -6,17 +6,20 @@ const REG = /\/pokemon/;
 
 test("list container is shown", async ({ page }) => {
   await page.goto(URL);
+  const list = page.locator(".list-container");
 
-  const locator = await page.locator(".list-container");
+  await list.waitFor();
 
   // Expect a title "to contain" a substring.
-  await expect(locator).toBeVisible();
+  await expect(list).toBeVisible();
   console.log("list container is shown!!");
 });
 test("list item is shown", async ({ page }) => {
   await page.goto(URL);
+  const list = page.locator(".list-container");
 
-  const list = await page.locator(".list-container");
+  await list.waitFor();
+
   const all = await list.locator(".list-item-name").all();
   console.log("all list-item-name count=", all.length);
 
