@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [main, master]
 jobs:
-  test:
+  test-and-deploy:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -27,3 +27,6 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+      - name: Trigger Render deploy
+        if: success()
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
