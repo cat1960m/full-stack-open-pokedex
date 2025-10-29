@@ -1,9 +1,11 @@
 name: Playwright Tests
 on:
   push:
-    branches: [main, master]
+    branches: 
+      - main
   pull_request:
-    branches: [main, master]
+    branches: [main]
+    types: [opened, synchronize]
 jobs:
   test-and-deploy:
     timeout-minutes: 60
@@ -28,5 +30,5 @@ jobs:
           path: playwright-report/
           retention-days: 30
       - name: Trigger Render deploy
-        if: success()
+        if: github.event_name == 'push' && success()
         run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
