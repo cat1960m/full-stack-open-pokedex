@@ -49,3 +49,11 @@ jobs:
       - name: Trigger Render deploy
         if: github.event_name == 'push' && success()
         run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
+  tag_release:
+    needs: [test-and-deploy]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.75.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
